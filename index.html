@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr Mariya Kirichek, Senior Quantitative UXR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#222222;--bg:#FCFCFC;--band:#F5F4F2;--accent:#4C5E93;--accent-tint:#ECEBF6;
+  --muted:#6B6E76;--slate:#828795;--line:#E7E6E2;--card:#FFFFFF;--maxw:1120px;
+  --serif:'Manrope',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;--sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --mono:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-size:17px;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:500}
+.eyebrow.dash{font-size:14px;letter-spacing:.16em;color:var(--accent);font-weight:600}
+.eyebrow.dash::before{content:"";display:inline-block;width:36px;height:2px;background:var(--accent);vertical-align:middle;margin-right:14px}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+nav .brand{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-.01em}
+nav ul{display:flex;align-items:center;gap:8px;list-style:none}
+nav ul a{color:var(--ink);font-weight:500;font-size:15.5px;padding:6px 10px;border-radius:6px}
+nav ul a:hover{color:var(--accent);text-decoration:none}
+nav ul .sep{color:#cfd0cb;font-size:14px;user-select:none;padding:0 4px}
+@media(max-width:600px){nav ul{display:none}}
+
+header.hero{background:var(--band);border-bottom:1px solid var(--line);text-align:center;padding:92px 0 84px}
+header.hero .wrap{max-width:820px}
+header.hero .eyebrow{display:block;margin-bottom:22px}
+h1{font-family:var(--serif);font-size:clamp(36px,4.8vw,52px);font-weight:700;line-height:1.06;letter-spacing:-.02em}
+header.hero .role{font-family:var(--sans);font-weight:600;color:var(--accent);font-size:clamp(17px,1.9vw,20px);letter-spacing:.01em;margin-top:14px}
+header.hero p.lead{font-size:clamp(18px,2vw,21px);color:#3a3d44;margin-top:28px;line-height:1.65}
+header.hero .cta{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;background:var(--accent);color:#fff;font-weight:600;padding:13px 26px;border-radius:8px;font-size:15px;cursor:pointer;border:none;font-family:var(--sans)}
+.btn:hover{text-decoration:none;opacity:.92}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid #cfd0cb}
+
+section{padding:88px 0}
+h2.sec-title{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);font-weight:700;letter-spacing:-.02em;margin:16px 0 0;line-height:1.12}
+.sec-intro{font-size:19px;color:#3a3d44;max-width:680px;margin-top:20px}
+
+.how{background:var(--bg);text-align:center}
+.how .head{margin-bottom:56px}
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;max-width:960px;margin:0 auto}
+.step{position:relative;text-align:center}
+.step:not(:first-child)::before{content:"";position:absolute;top:27px;left:-50%;width:100%;border-top:1.5px dashed #cfd0cb;z-index:0}
+.step .circle{position:relative;z-index:1;width:54px;height:54px;border:1.5px solid var(--accent);color:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;font-weight:600;margin:0 auto 18px;background:var(--bg)}
+.step h4{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:8px}
+.step p{font-size:14.5px;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.process{grid-template-columns:1fr;gap:30px;max-width:340px}.step:not(:first-child)::before{display:none}}
+
+.work{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.work-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hint{font-size:13px;color:var(--slate);font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;transition:box-shadow .2s,transform .2s,border-color .2s;cursor:pointer;text-align:left;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 14px 38px rgba(34,34,34,.09);transform:translateY(-3px)}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.card.active{border-color:var(--accent);box-shadow:0 14px 38px rgba(47,91,234,.14)}
+
+.card .card-icon{width:40px;height:40px;border-radius:10px;background:rgb(236,238,246);display:flex;align-items:center;justify-content:center;color:var(--accent);margin-bottom:22px;flex-shrink:0}
+.card .card-icon svg{width:20px;height:20px}
+
+.card .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--slate);line-height:1.5;margin-bottom:14px}
+.card h3{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1.18;letter-spacing:-.01em;margin-bottom:12px}
+.card p.desc{font-size:15px;color:#3a3d44;margin-bottom:16px}
+.card .impact{font-size:13.5px;font-weight:600;color:var(--ink);border-left:3px solid var(--accent);padding-left:12px;margin-bottom:20px}
+.card .expand{margin-top:auto;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:var(--accent-tint);border-radius:20px;padding:4px 11px;margin-bottom:14px}
+.detail .badge{margin:0 0 4px}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.card-top .card-icon{margin-bottom:0}
+.card-top .badge{margin:0}
+
+.detail{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:44px 48px;margin-top:26px;position:relative}
+@media(max-width:600px){.detail{padding:32px 24px}}
+.detail .close{position:absolute;top:26px;right:26px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
+.detail .close:hover{border-color:var(--accent);color:var(--accent)}
+.detail h3{font-family:var(--serif);font-size:clamp(24px,3vw,32px);font-weight:700;letter-spacing:-.02em;line-height:1.14;max-width:88%}
+.detail .kicker{font-family:var(--mono);font-size:13px;color:var(--slate);letter-spacing:.03em;margin-top:14px}
+.dsec{margin-top:30px}
+.dlabel{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-bottom:10px}
+.dsec p{font-size:16.5px;color:#33363d;margin-bottom:12px;max-width:820px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:5px 12px}
+.confid{margin-top:40px;padding:6px;border:1px solid var(--line);border-radius:12px;padding:20px 24px;font-size:15px;color:var(--muted);display:flex;gap:12px;align-items:flex-start}
+
+.tl{border-left:2px solid var(--line);margin:32px 0 0 6px;max-width:800px}
+.tl .item{position:relative;padding:0 0 34px 30px}
+.tl .item::before{content:"";position:absolute;left:-8px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--dot, var(--accent));border:2px solid var(--bg)}
+.tl .role{font-family:var(--serif);font-weight:700;font-size:19px}
+.tl .role .org{font-family:var(--sans);color:var(--muted);font-weight:500;font-size:16px}
+.tl .dates{color:var(--muted);font-size:14px;margin:2px 0 8px}
+.tl .desc{font-size:15px;color:#3a3d44}
+
+.contact{background:var(--band);border-top:1px solid var(--line)}
+.contact h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);font-weight:700;margin:16px 0 0}
+.contact p{font-size:18px;color:#3a3d44;margin:18px 0 30px;max-width:560px}
+.contact .cts{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:30px}
+.contact .loc{font-family:var(--sans);font-size:13px;letter-spacing:.06em;color:var(--slate)}
+footer.foot{background:var(--bg);text-align:center;padding:34px 0;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <div class="brand">Kirichek</div>
+  <ul>
+    <li><a href="#work">Case Studies</a></li>
+    <li class="sep">|</li>
+    <li><a href="#about">My Experience</a></li>
+    <li class="sep">|</li>
+    <li><a href="#contact">Get in Touch</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Rigorous Researcher &nbsp;&middot;&nbsp; Behavioural Scientist &nbsp;&middot;&nbsp; Strategic Adviser</span>
+  <h1>Dr Mariya Kirichek</h1>
+  <p class="lead">I turn fragmented signals into strategic direction by connecting quantitative data, qualitative insight, behavioural context, and research literature. When evidence doesn't align, I dig deeper to uncover why, close gaps, and help teams make confident decisions about what to do next.</p>
+</div></header>
+
+<section class="work" id="work"><div class="wrap">
+  <span class="eyebrow dash">Case Studies</span>
+  <div class="work-head">
+    <div class="confid" style="margin-top:24px;"><span>🔒</span><span>Due to the confidential nature of this work, no real data, details or screenshots are used. All examples are illustrative.</span></div>
+    <p class="hint" style="margin-top:20px;">Click any card to expand ↓</p>
+  </div>
+  
+  <div class="cards" style="margin-top:28px;">
+    <div class="card" role="button" tabindex="0" data-target="d1">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8.5 12l1.5 1.5L12.5 10.5"/><line x1="8.5" y1="16.5" x2="15.5" y2="16.5"/></svg></div>
+      <div class="kicker">Measurement systems · Service evaluation</div>
+      <h3>Building support quality measurement at scale</h3>
+      <p class="desc">A multi-year programme to validate, redesign, and rebuild how support quality is measured across thousands of daily global agent interactions.</p>
+      <div class="impact">The framework became the foundation of the internal quality platform and its AI automation layer, supporting day-to-day QA across multiple global vendor partners.</div>
+      <div class="expand">Read case study</div>
+    </div>
+
+    <div class="card" role="button" tabindex="0" data-target="d2">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      <div class="kicker">Behavioural diagnosis · Service improvement</div>
+      <h3>Diagnosing and improving support resolution</h3>
+      <p class="desc">Mixed methods uncovered structural process bottlenecks and incentive flaws causing unresolved support interactions.</p>
+      <div class="impact">The closure-friction intervention delivered the largest CSAT improvement that year while building permanent, data-driven blind spot protection.</div>
+      <div class="expand">Read case study</div>
+    </div>
+
+    <div class="card" role="button" tabindex="0" data-target="d4">
+      <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="kicker">Behavioural strategy · Experimentation</div>
+      <h3>Creating a behavioural growth playbook</h3>
+      <p class="desc">Three experiments — in-app promo RCTs, product-service bundling, and retail agent incentives — driving commercial conversion without discounting.</p>
+      <div class="impact">Generated evidence with multi-million-pound impact when scaled, establishing a lower-cost behavioral approach for ongoing launch architectures.</div>
+      <div class="expand">Read case study</div>
+    </div>
+
+    <div class="card" role="button" tabindex="0" data-target="d5">
+      <div class="card-top"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="badge">Wildcard</span></div>
+      <div class="kicker">Behavioural measurement · Public-interest research</div>
+      <h3>Understanding hidden barriers to benefit uptake</h3>
+      <p class="desc">Using implicit measurement to bypass social-desirability bias and surface psychological barriers that traditional surveys completely miss.</p>
+      <div class="impact">Uncovered a measurable implicit association between benefit-seeking and shame, directly informing smart card formatting strategies.</div>
+      <div class="expand">Read case study</div>
+    </div>
+  </div>
+
+  <!-- DETAIL PANELS -->
+  <article class="detail" id="d1" hidden>
+    <button class="close" aria-label="Close"></button>
+    <h3>Building support quality measurement at scale</h3>
+    <div class="kicker">Measurement systems &amp; service evaluation · Customer Support · 2022–2025</div>
+    
+    <div class="dsec">
+      <div class="dlabel">Problem &amp; Framing</div>
+      <p>How do we measure support quality in a way that is reliable, sensitive enough to detect real differences, developmental for agents, and reflective of the actual user experience, without runaway cost? In 2022, I led the validation of the existing quality framework and found that its scores did not predict user experience or support outcomes. This raised a fundamental question: were we measuring quality accurately at all? Answering that question became a multi-year programme to redesign how support quality was measured.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Diagnosis &amp; Methods</div>
+      <p>I began by observing agents, reviewing support transcripts, and defining measurement requirements through both academic literature and leadership priorities. Throughout the programme, I ran recurring interviews, shadowing sessions, and asynchronous feedback loops with agents and auditors. This ensured the framework reflected both agent behaviour (including motivations and gaming risks) and auditors' ability to score consistently and accurately. To evaluate the existing system, I ran randomised controlled pilots against a third-party tool and applied factor analysis, inter-item correlation analysis, and regression modelling to assess construct validity and predictive validity against user and business outcomes.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Findings</div>
+      <p>The third-party tool was not predictive of either the quality framework or user outcomes. Its automated scoring performed no better than noise, while increasing burden on manual auditors. The analysis also revealed weaknesses within the framework itself. Factor analysis exposed redundant items that added complexity without improving measurement quality.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Iteration &amp; Influence</div>
+      <p>I partnered with Data Science to independently validate the findings and presented the evidence to leadership through three rounds of review and refinement. The result was a reversal of an earlier decision to purchase the third-party solution in favour of building an internal system. I then led the redesign of the framework: reducing the scorecard by roughly half while maintaining sensitivity, introducing a nested near-real-time sampling strategy, moving to agent-level scoring, and designing an audit-of-auditors layer to measure reviewer quality.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Impact</div>
+      <p>The framework I authored and validated became the foundation of the internal quality platform and its AI automation layer. Today it supports day-to-day quality assurance globally across all supported languages and thousands of agents operating through multiple vendor partners.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Skills</div>
+      <div class="tags">
+        <span class="tag">Research strategy</span>
+        <span class="tag">Psychometrics</span>
+        <span class="tag">Experimental design</span>
+        <span class="tag">Measurement validity</span>
+        <span class="tag">Stakeholder influence</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="detail" id="d2" hidden>
+    <button class="close" aria-label="Close"></button>
+    <h3>Diagnosing and improving support resolution</h3>
+    <div class="kicker">Behavioural diagnosis &amp; service improvement · Customer Support · 2021–2024</div>
+    
+    <div class="dsec">
+      <div class="dlabel">Problem &amp; Framing</div>
+      <p>Customer satisfaction was being negatively impacted by unresolved support issues, yet the organisation lacked a clear understanding of why some cases were not reaching resolution. A commonly held belief was that agents were under excessive time pressure and therefore unable to fully resolve issues before closing cases. Before proposing solutions, I wanted to understand whether this explanation was actually true and identify the behaviours and operational constraints driving poor user outcomes.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Diagnosis &amp; Methods</div>
+      <p>I began by introducing a recurring agent survey to establish an ongoing signal of friction points within the support experience and identify areas requiring deeper investigation. Survey findings highlighted resolution challenges, which I followed up through a focused mixed-method programme. This combined transcript reviews, screen recordings with timestamp analysis, existing quality data, structured reviews of reopened cases, on-site shadowing, and focus groups with agents. Because support operations were delivered through third-party vendors, I also partnered with vendor organisations to understand how their performance targets and incentives shaped agent behaviour.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Findings</div>
+      <p>The evidence contradicted the prevailing assumption that time pressure was the primary issue. Agents generally had time available within their workflows. Instead, the research revealed that slow escalation processes were preventing timely resolution. To meet case-closure targets set by vendors, agents often closed cases before escalations were complete, leaving users without a fully resolved outcome. The work also identified supporting process failures, including limited visibility into escalation progress, difficulty transferring misrouted cases, and insufficient mechanisms for managing secondary issues raised during support interactions. Taken together, the findings showed that customer dissatisfaction stemmed from process and incentive design rather than workload constraints.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Iteration &amp; Intervention</div>
+      <p>I translated the diagnosis into a set of targeted interventions, including increased visibility into escalation status, clearer expectations for escalation turnaround times, and deliberate friction to discourage premature closure of unresolved cases.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Impact</div>
+      <p>Using regression analysis to control for existing trends and operational differences, I evaluated the resulting changes and found that the closure-friction intervention delivered the largest improvement in customer satisfaction observed that year. Beyond the immediate uplift, the agent survey and quality framework checks became enduring mechanisms for identifying emerging resolution issues earlier, reducing a longstanding organisational blind spot and improving the team's ability to iterate on tooling and process.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Skills</div>
+      <div class="tags">
+        <span class="tag">Mixed-method research</span>
+        <span class="tag">Root-cause analysis</span>
+        <span class="tag">Behavioural diagnosis</span>
+        <span class="tag">Experimentation</span>
+        <span class="tag">Service improvement</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="detail" id="d4" hidden>
+    <button class="close" aria-label="Close"></button>
+    <h3>Creating a behavioural growth playbook</h3>
+    <div class="kicker">Behavioural strategy &amp; experimentation · Consumer Hardware · 2018–2021</div>
+    
+    <div class="dsec">
+      <div class="dlabel">Problem &amp; Framing</div>
+      <p>A major hardware business was launching new products across both owned and third-party retail channels. While discounting could increase sales, it came at a direct cost to the business. I saw an opportunity to test whether behavioural interventions could provide a more scalable and sustainable way to improve conversion and sales performance while building internal capability for future launches.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Diagnosis &amp; Methods</div>
+      <p>I prioritised and led a portfolio of behavioural research initiatives focused on key moments in the customer journey. In-app promotions: I designed behaviourally informed multi-arm randomised controlled trials to optimise promotional messaging and offers that drove device sales globally. I owned experiment design and behavioural strategy, partnering with Data Science on analysis. Product-service bundling: Working with a colleague, I used conjoint analysis to identify the combinations of products and services that created the strongest value proposition for customers. Retail agent incentives: I partnered with third-party retailers to run field experiments testing how different incentive structures influenced sales behaviour among retail staff. Alongside the research itself, I worked with product, marketing, and commercial stakeholders to translate behavioural science principles into practical guidance that could be reused beyond the individual studies.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Findings</div>
+      <p>Across all three programmes, the research identified statistically significant interventions that improved commercial outcomes and informed bundling, incentive, and marketing strategy. More broadly, the work demonstrated that behavioural interventions could meaningfully influence purchasing behaviour in this context without relying solely on discounting or additional spend.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Iteration &amp; Scaling</div>
+      <p>To ensure the approach could be applied beyond these individual projects, I created a behavioural science playbook and delivered training sessions across teams, translating research findings into repeatable principles and practical tools for future launches. This shifted the work from a set of isolated experiments to a reusable approach for optimising customer decision-making across the business.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Impact</div>
+      <p>The findings informed launch strategy, product bundling, retail incentives, and promotional activity, generating evidence with multi-million-pound impact when scaled. More importantly, the work established and validated a lower-cost behavioural approach to sales optimisation that teams could continue applying long after the original studies concluded.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Skills</div>
+      <div class="tags">
+        <span class="tag">Behavioural science</span>
+        <span class="tag">Experimentation strategy</span>
+        <span class="tag">Multi-arm RCTs</span>
+        <span class="tag">Conjoint analysis</span>
+        <span class="tag">Capability building</span>
+        <span class="tag">Cross-functional influence</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="detail" id="d5" hidden>
+    <button class="close" aria-label="Close"></button>
+    <span class="badge">Wildcard</span>
+    <h3>Understanding hidden barriers to benefit uptake</h3>
+    <div class="kicker">Behavioural measurement &amp; public-interest research · Civic Technology · 2020–2021</div>
+    
+    <div class="dsec">
+      <div class="dlabel">Problem &amp; Framing</div>
+      <p>During the early stages of COVID-19, searches related to government benefits tripled, yet many eligible individuals were not accessing available support. One potential explanation was that benefit-seeking carried an implicit association with shame. Because people are often unwilling or unable to report these attitudes directly, traditional survey methods alone were unlikely to capture the true barrier.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Diagnosis &amp; Methods</div>
+      <p>I designed a three-phase mixed-method study. First, I used open card-sorting exercises and Reddit text analysis to understand how people conceptualised benefit-seeking. Next, I conducted a quantitative study combining self-report measures, demographic data, and an Implicit Association Test (IAT) designed to measure associations between benefit-seeking and shame versus pride, as well as social versus transactional framing. To ensure methodological robustness, I first validated the IAT approach using a flowers-versus-insects proof of concept (d = 0.77) before deploying it within a nationally representative US sample of more than 300 participants. The resulting data was analysed using regression, ANOVA, and MANOVA techniques.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Findings</div>
+      <p>The study identified a meaningful implicit association between benefit-seeking and shame that was largely missed by self-report measures. The effect was strongest for food assistance programmes and significantly improved prediction of both willingness to apply for benefits and previous benefit-seeking behaviour.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Impact</div>
+      <p>The research provided evidence for a behavioural barrier that had previously been difficult to measure and gave the team a clearer understanding of the mechanisms influencing uptake. The findings informed how the relevant design approach could be applied to smart cards. The solution was implemented after I had moved on, so I cannot speak to the eventual product impact. The project was delivered on an approximately £1,000 proof-of-concept budget, without sharing user-level data, and within the constraints of influence available through the Search results page.</p>
+    </div>
+    
+    <div class="dsec">
+      <div class="dlabel">Skills</div>
+      <div class="tags">
+        <span class="tag">Behavioural science</span>
+        <span class="tag">Implicit measurement</span>
+        <span class="tag">Mixed-method research</span>
+        <span class="tag">Advanced statistics</span>
+        <span class="tag">Research-to-product translation</span>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="about"><div class="wrap">
+  <span class="eyebrow dash">My Experience</span>
+  
+  <div class="tl">
+    <!-- WORK HISTORY -->
+    <div class="item" style="--dot:#4C5E93">
+      <div class="role">User Experience Researcher <span class="org">· Meta</span></div>
+      <div class="dates">Aug 2021 – Present</div>
+      <div class="desc">Led support-quality and agent-experience research across Meta, owning research strategy from prioritisation through execution. Combined behavioural research, operational data, interviews, and transcript analysis to uncover systemic issues across tools, workflows, and processes.<br><br>Built measurement frameworks, survey programmes, and analysis approaches adopted by teams to improve service quality, understand agent experience, and guide product and operational decisions.</div>
+    </div>
+    <div class="item" style="--dot:#4C5E93">
+      <div class="role">Behavioural Scientist <span class="org">· Google (Contract)</span></div>
+      <div class="dates">Oct 2018 – Aug 2021</div>
+      <div class="desc">Applied behavioural science across consumer products, digital experiences, and hardware in EMEA, identifying opportunities to improve user decision-making through experimentation and behavioural insight.<br><br>Designed and evaluated experiments that shaped products used by millions, while scaling behavioural science capability through training, frameworks, and practical guidance for teams.</div>
+    </div>
+    <div class="item" style="--dot:#4C5E93">
+      <div class="role">Behavioural Change Consultant <span class="org">· Croydon Council</span></div>
+      <div class="dates">Mar 2017 – Oct 2018</div>
+      <div class="desc">First behavioural scientist in the organisation. Built the behavioural change function, applying behavioural science to improve public services and designing interventions to influence citizen behaviour.<br><br>Developed evidence-based approaches to demand management and trained teams to apply behavioural principles in policy and service design.</div>
+    </div>
+    <div class="item" style="--dot:#4C5E93">
+      <div class="role">Behavioural Science Advisor <span class="org">· Behavioural Design Lab</span></div>
+      <div class="dates">Jun 2014 – Mar 2017</div>
+      <div class="desc">Applied behavioural science to social impact challenges, advising organisations including Southwark Council and Big Venture Challenge on behaviour change strategy and intervention design.<br><br>Supported five social ventures over three years, translating behavioural research into practical solutions.</div>
+    </div>
+    <div class="item" style="--dot:#4C5E93">
+      <div class="role">Behavioural Science Advisor <span class="org">· Claire McDonald Associates</span></div>
+      <div class="dates">Dec 2013 – Aug 2016</div>
+      <div class="desc">Designed behavioural interventions across NHS and public health programmes, including urgent care and cancer screening initiatives.<br><br>Research contributed to published work in Perspectives in Public Health.</div>
+    </div>
+
+    <!-- EDUCATION HISTORY -->
+    <div class="item" style="--dot:#3E8F9E">
+      <div class="role">PhD, Behavioural Sciences <span class="org">· Warwick Business School</span></div>
+      <div class="dates">2013 – 2017</div>
+      <div class="desc">ERC-funded doctorate supervised by Nick Chater investigating how people respond to false feedback about their own decisions.</div>
+    </div>
+    <div class="item" style="--dot:#3E8F9E">
+      <div class="role">MSc, Cognitive and Decision Sciences <span class="org">· UCL</span></div>
+      <div class="dates">2012 – 2013</div>
+      <div class="desc">Distinction.</div>
+    </div>
+    <div class="item" style="--dot:#3E8F9E">
+      <div class="role">BSc, Psychology <span class="org">· UCL</span></div>
+      <div class="dates">2010</div>
+      <div class="desc">2:1.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <span class="eyebrow dash" style="display:inline-block;">Contact</span>
+  <h2>Let's talk.</h2>
+  <div class="cts">
+    <a class="btn" href="mailto:m.kirichek@hotmail.com">m.kirichek@hotmail.com</a>
+    <a class="btn ghost" href="https://www.linkedin.com/in/mariya-marsha-kirichek" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="loc">London, UK</span>
+  </div>
+</div>
+</section>
+
+<footer class="foot">&copy; 2026 Dr Mariya Kirichek</footer>
+
+<script>
+(function(){
+  var cards = document.querySelectorAll('.card[data-target]');
+  var details = document.querySelectorAll('.detail');
+  
+  function closeAll() {
+    details.forEach(function(d) { d.hidden = true; });
+    cards.forEach(function(c) { c.classList.remove('active'); });
+  }
+  
+  cards.forEach(function(c) {
+    function toggle() {
+      var d = document.getElementById(c.getAttribute('data-target'));
+      var wasOpen = !d.hidden;
+      closeAll();
+      if (!wasOpen) {
+        d.hidden = false;
+        c.classList.add('active');
+        d.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    }
+    c.addEventListener('click', toggle);
+    c.addEventListener('keydown', function(e) { 
+      if (e.key === 'Enter' || e.key === ' ') { 
+        e.preventDefault(); 
+        toggle(); 
+      } 
+    });
+  });
+  
+  document.querySelectorAll('.detail .close').forEach(function(b) {
+    b.addEventListener('click', function() { 
+      closeAll(); 
+      document.getElementById('work').scrollIntoView({behavior: 'smooth', block: 'start'}); 
+    });
+  });
+})();
+</script>
+</body>
+</html>
